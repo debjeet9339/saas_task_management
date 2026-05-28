@@ -4,8 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes.auth_routes import router as auth_router
 from routes.workspace_routes import router as workspace_router
 from routes.task_routes import router as task_router
+from routes.user_routes import router as user_router
 
 from websocket.manager import manager
+from routes.workspace_routes import (
+    router as workspace_router,
+)
 
 
 app = FastAPI()
@@ -23,7 +27,8 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(workspace_router)
 app.include_router(task_router)
-
+app.include_router(user_router)
+app.include_router(workspace_router)
 
 @app.get("/")
 async def root():
